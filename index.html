@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Header section */
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo a {
+            color: #00c6ff;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav__list {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav__link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #00c6ff;
+            transition: 0.3s ease;
+        }
+
+        .nav__link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #00c6ff;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .nav__list {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 200px;
+                height: calc(100% - 70px);
+                background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+                flex-direction: column;
+                align-items: center;
+                justify-content: start;
+                gap: 20px;
+                padding-top: 40px;
+                transition: 0.3s ease;
+            }
+
+            .nav__list.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 198, 255, 0.3), transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: #00c6ff;
+        }
+
+        .typing {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #0efafa;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: #fff;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
+        }
+
+        .secondary-btn {
+            border: 2px solid #00c6ff;
+            color: #00c6ff;
+        }
+
+        .secondary-btn:hover {
+            background: #00c6ff;
+            color: #000;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .typing {
+                font-size: 18px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* about section  */
+        .about-section {
+            padding: 100px 8%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+        }
+
+        .about-container {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 198, 255, 0.4), transparent);
+            z-index: 1;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        .image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1.5;
+            max-width: 650px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #00c6ff;
+        }
+
+        .about-content p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        .mission {
+            font-size: 18px;
+            color: #0efafa;
+            margin-top: 20px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .expertise-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s ease;
+            border: 1px solid rgba(0, 198, 255, 0.2);
+        }
+
+        .expertise-item:hover {
+            background: #00c6ff;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 900px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-content {
+                max-width: 100%;
+            }
+        }
+
+
+        /* technical skills */
+        .skill-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            width: 80px;
+            height: 4px;
+            background: #00c6ff;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 10px;
+        }
+
+        .skills-container {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            border-radius: 20px;
+            transition: width 1.8s ease;
+        }
+
+        @keyframes load {
+            from {
+                width: 0;
+            }
+        }
+
+        .skill:hover .progress-bar {
+            box-shadow: 0 0 15px #00c6ff;
+        }
+
+        /* Responsive */
+        @media(max-width:600px) {
+            .skills-container {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        /* experance  */
+        .experience-section {
+            padding: 100px 8%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #00c6ff;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #00c6ff;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 70px;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: #00c6ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f2027;
+            font-size: 16px;
+        }
+
+        .timeline-content h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #0efafa;
+        }
+
+        .timeline-date {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        .timeline-content a {
+            color: #00c6ff;
+            text-decoration: underline;
+        }
+
+        .timeline-content a:hover {
+            color: #0efafa;
+        }
+
+        .timeline-item:hover .timeline-icon {
+            transform: scale(1.2);
+            transition: 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content h3 {
+            color: #00c6ff;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-icon {
+                left: 0;
+            }
+        }
+
+        /* Research  */
+        .research {
+            padding: 80px 10%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            text-align: center;
+            color: #fff;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .section-subtitle {
+            color: #ccc;
+            margin-bottom: 50px;
+        }
+
+        .research-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .research-card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .research-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .research-author {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .research-desc {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .research-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #0077ff;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #005fd1;
+            transform: scale(1.05);
+        }
+
+        /* project */
+        .projects-section {
+            padding: 100px 8%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            text-align: center;
+            color: #fff;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #00c6ff;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 198, 255, 0.4);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .project-content h3 {
+            margin-bottom: 15px;
+            color: #0efafa;
+        }
+
+        .project-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .live-btn {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: #fff;
+        }
+
+        .live-btn:hover {
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.5);
+        }
+
+        .code-btn {
+            border: 1px solid #00c6ff;
+            color: #00c6ff;
+        }
+
+        .code-btn:hover {
+            background: #00c6ff;
+            color: #000;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .project-content {
+                text-align: center;
+            }
+
+            .project-buttons {
+                justify-content: center;
+            }
+        }
+
+        /* contact section  */
+        .contact {
+            padding: 80px 10%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .contact p {
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact input::placeholder,
+        .contact textarea::placeholder {
+            color: #ddd;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .contact button {
+            width: 180px;
+            padding: 15px 0;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #0077ff, #00c6ff);
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0, 119, 255, 0.4);
+        }
+
+        .contact button:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 119, 255, 0.6);
+        }
+
+        .status {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #00ff88;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            padding: 70px 8% 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #00c6ff;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #ccc;
+            transition: 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00c6ff;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            color: #00c6ff;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #00c6ff;
+            color: #000;
+            transform: translateY(-4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .footer-container {
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- headr section  -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">MyPortfolio</a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
+                    <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- herosection  -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Hi, I’m <span>Assadullah Mohammadi</span>
+            </h1>
+
+            <h3 class="typing">Full Stack Developer & Educator</h3>
+
+            <p>
+                Passionate about building modern web applications and empowering
+                the next generation of tech professionals through education and innovation.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary-btn">View My Work</a>
+                <a href="#contact" class="btn secondary-btn">Contact Me</a>
+            </div>
+        </div>
+    </section>
+    <!-- about section  -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+
+            <div class="about-image">
+                <div class="image-wrapper">
+                    <img src="img/ProfilePhoto.png" alt="Assadullah Mohammadi">
+                </div>
+            </div>
+
+            <div class="about-content">
+                <h2 class="section-title">About Me</h2>
+
+                <p>
+                    I am Assadullah Mohammadi, a passionate Full Stack Developer, Educator, and Academic Professional
+                    dedicated to empowering the next generation of technology leaders.
+                </p>
+
+                <p>
+                    As an Associate Professor at Kabul Education University in the Faculty of Computer Science, I bridge
+                    academic knowledge with real-world application through modern web technologies and scalable systems.
+                </p>
+
+                <p class="mission">
+                    <strong>My Mission:</strong> Transform knowledge into impact and skills into global opportunities.
+                </p>
+
+                <!-- <div class="expertise-grid">
+                    <div class="expertise-item">Full Stack Development</div>
+                    <div class="expertise-item">React & Modern JS</div>
+                    <div class="expertise-item">Node.js Architecture</div>
+                    
+                    <div class="expertise-item">PHP & MySQL</div>
+                    <div class="expertise-item">REST APIs</div>
+                    <div class="expertise-item">Database Design</div>
+                    <div class="expertise-item">UI/UX Principles</div>
+                    <div class="expertise-item">AI & EdTech Research</div>
+                </div> -->
+
+            </div>
+        </div>
+
+        <!-- skills  -->
+        <section class="skill-section" id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+
+            <div class="skills-container">
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Full-Stack</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" data-width="95%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Node.js Architecture</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" data-width="80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>REST APIs</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" data-width="65%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>AI & EdTech Research</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" data-width="75%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>UI/UX Principles</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" data-width="85%"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- experance section -->
+        <section class="experience-section" id="experience">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="timeline">
+
+                <!-- Experience 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>SME (Subject Matter Expert)</h3>
+                        <span class="timeline-date">Feb 2023 – Dec 2024 | LAPIS Afghanistan</span>
+                        <p>
+                            Developed curriculum taxonomy for grades 10–12, aligned online content with national
+                            curriculum, created assessments, and contributed to interactive learning platforms (SENF &
+                            Dana).
+                            <a href="https://senf.af/computer.html" target="_blank">Platform link</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Web Application Designer & Developer</h3>
+                        <span class="timeline-date">Apr 2020 – May 2021 | Network Zoon (Kabul)</span>
+                        <p>
+                            Designed and developed responsive websites using HTML, CSS, JavaScript, React; ensured
+                            cross-browser compatibility, performance optimization, SEO, and accessibility. Collaborated
+                            with UX/UI designers and back-end developers.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Associate Professor</h3>
+                        <span class="timeline-date">Jan 2017 – Present | Kabul Education University</span>
+                        <p>
+                            Teaching Full Stack Development, Database Administration (SQL & PLSQL), software
+                            engineering; supervising students, conducting research, developing course policies, and
+                            mentoring future tech leaders.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Experience 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Curriculum Development Coordinator</h3>
+                        <span class="timeline-date">Apr 2017 – May 2018 | ASDP-2, World Bank</span>
+                        <p>
+                            Assessed curriculum effectiveness, trained teachers, implemented instructional strategies,
+                            and developed procedures to improve digital and classroom learning.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Volunteer & Projects</h3>
+                        <p>
+                            Online courses for Afghan students, community coding initiatives, Python training, web &
+                            graphic design workshops. Projects include Online Management System (.NET) and Online Exam
+                            (Java, Spring & Hibernate).
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Research  -->
+        <section class="research">
+            <h2 class="section-title">Research Publications</h2>
+            <p class="section-subtitle">
+                Selected academic research articles in Computer Science, AI, and Educational Technology.
+            </p>
+
+            <div class="research-container">
+
+                <div class="research-card">
+                    <h3>Evaluating the Effectiveness of Artificial Intelligence in Education Using Technology Acceptance
+                        Model for Personalized Learning and Assessment</h3>
+                    <p class="research-author">Assadullah Mohammadi</p>
+                    <p class="research-desc">
+                        Exploring AI’s impact on society, opportunities, challenges, and ethical considerations.
+                    </p>
+                    <div class="research-meta">
+                        <span>AI</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=gPkFrzAAAAAJ&citation_for_view=gPkFrzAAAAAJ:d1gkVwhDpl0C"
+                        class="btn">View Paper</a>
+                </div>
+
+                <div class="research-card">
+                    <h3>Data deduplication management and access control over time across multiple CSP using KGC</h3>
+                    <p class="research-author">Assadullah Mohammadi</p>
+                    <p class="research-desc">
+                        This research proposes a framework for efficient data deduplication and secure access control
+                        across multiple cloud service providers (CSPs) over time, leveraging a Key Generation Center
+                        (KGC) to ensure data integrity, confidentiality, and user-specific access management.
+                    </p>
+                    <div class="research-meta">
+                        <span>Educational Tech</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=gPkFrzAAAAAJ&citation_for_view=gPkFrzAAAAAJ:u-x6o8ySG0sC"
+                        class="btn">Read Article</a>
+                </div>
+
+                <div class="research-card">
+                    <h3>Adoption and Effectiveness of Artificial Intelligence Applications in Improving Student
+                        Educational Performance: A Case Study of Badakhshan University, Afghanistan</h3>
+                    <p class="research-author">Assadullah Mohammadi</p>
+                    <p class="research-desc">
+                        The rapid advancement of artificial intelligence (AI) technologies has transformed educational
+                        practices worldwide; however, their adoption and effectiveness in developing countries, such as
+                        Afghanistan, remain limited.
+                    <div class="research-meta">
+                        <span>AI in Education</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=gPkFrzAAAAAJ&citation_for_view=gPkFrzAAAAAJ:u5HHmVD_uO8C"
+                        class="btn">Read Article</a>
+                </div>
+
+            </div>
+        </section>
+        <!-- project   -->
+        <section class="projects-section" id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+
+            <div class="projects-container">
+
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="img/Hospital-scaled.jpg" alt="Project One">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>Hospital Management System</h3>
+                        <p>
+                            A full-stack hospital management system built with modern backend architecture,
+                            secure authentication, and dynamic dashboard analytics.
+                        </p>
+
+                        <div class="project-buttons">
+                            <a href="#" class="btn live-btn">Live Demo</a>
+                            <a href="#" class="btn code-btn">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="img/lms.png" alt="Project Two">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>E-Learning Platform</h3>
+                        <p>
+                            A scalable learning platform designed for remote education with
+                            course management, student tracking, and performance analytics.
+                        </p>
+
+                        <div class="project-buttons">
+                            <a href="#" class="btn live-btn">Live Demo</a>
+                            <a href="#" class="btn code-btn">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="img/onlineexam.jpg" alt="Project Two">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>Online Exam</h3>
+                        <p>
+                            A web-based platform developed by me to create, manage, and conduct exams online. It allows
+                            instructors to design questions, assign tests, and automatically evaluate student
+                            performance.
+                        </p>
+
+                        <div class="project-buttons">
+                            <a href="#" class="btn live-btn">Live Demo</a>
+                            <a href="#" class="btn code-btn">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" id="project">
+                    <div class="project-image">
+                        <img src="img/portfolio.jpg" alt="Project Three">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>Portfolio System</h3>
+                        <p>
+                            A modern personal branding portfolio with responsive layout,
+                            smooth animations, and optimized performance.
+                        </p>
+
+                        <div class="project-buttons">
+                            <a href="#" class="btn live-btn">Live Demo</a>
+                            <a href="#" class="btn code-btn">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ocntact  -->
+        <section class="contact">
+            <h2 class="section-title">Contact Me</h2>
+            <p class="section-subtitle">
+                Send me a message and I will get back to you!
+            </p>
+
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <p id="statusMsg" class="status"></p>
+        </section>
+        <!-- footer  -->
+        <footer class="footer">
+            <div class="footer-container">
+
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>Assadullah Mohammadi</h3>
+                    <p>
+                        Full Stack Developer & Educator passionate about building
+                        modern web applications and empowering future tech leaders.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skill">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: assadullahzardnai100@gmail.com</p>
+                    <p>WhatsApp: +93 787 117 764</p>
+                    <p>Location: Kabul, Afghanistan</p>
+                </div>
+
+                <!-- Social -->
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/assadullah-mohammadi-842a6619a/" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/username" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Assadullah Mohammadi | All Rights Reserved</p>
+            </div>
+        </footer>
+        <script>
+            const bars = document.querySelectorAll(".progress-bar");
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        bar.style.width = bar.getAttribute("data-width");
+                    } else {
+                        entry.target.style.width = "0";
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            bars.forEach(bar => {
+                observer.observe(bar);
+            });
+        </script>
+        <script>
+            const hamburger = document.getElementById('hamburger');
+            const navList = document.querySelector('.nav__list');
+
+            hamburger.addEventListener('click', () => {
+                navList.classList.toggle('active');
+                hamburger.classList.toggle('open');
+            });
+        </script>
+        <script type="module">
+  // Import Firebase modules
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyC7lu0yt6WHheavrkMGN-Z_Lw7NPCwk73M",
+    authDomain: "portfoliocontactform-95360.firebaseapp.com",
+    databaseURL: "https://portfoliocontactform-95360-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "portfoliocontactform-95360",
+    storageBucket: "portfoliocontactform-95360.appspot.com",
+    messagingSenderId: "234595353660",
+    appId: "1:234595353660:web:9405ae9518a0cff1b9ef39",
+    measurementId: "G-F45Z24YRE9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // فرم Contact
+  const form = document.getElementById('contactForm');
+  const statusMsg = document.getElementById('statusMsg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if(!name || !email || !message){
+      statusMsg.textContent = "Please fill all fields!";
+      statusMsg.style.color = "#ff5555";
+      return;
+    }
+    push(ref(db, 'messages/'), {
+      name,
+      email,
+      message,
+      timestamp: new Date().toISOString()
+    })
+    .then(() => {
+      statusMsg.textContent = "Message sent successfully!";
+      statusMsg.style.color = "#00ff88";
+      form.reset();
+    })
+    .catch((error) => {
+      statusMsg.textContent = "Error sending message: " + error.message;
+      statusMsg.style.color = "#ff5555";
+    });
+  });
+</script>
+        </script>
+</body>
+
+</html>
